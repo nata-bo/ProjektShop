@@ -1,30 +1,38 @@
+import java.util.ArrayList;
+
 public class Product {
-   private double price;
-   private String name;
+    private double price;
+    private String title;
     private Category category;
+    private ArrayList<Double> history= new ArrayList<>(); // сразу присвоили значение
+                                                         // то в конструктор это поле добавлять не нужно
 
     public Product(double price, String name, Category category) {
         this.price = price;
-        this.name = name;
+        this.title = name;
         this.category = category;
     }
 
     @Override
     public String toString() {
-        return name+ " - цена: "+price+", категория ["+category+"]";
+        return title + " - цена: " + price + ", категория [" + category + "]";
     }
 
     public void setPrice(double price) {
-        if(price>0) {
+        if (price > 0) {
+            history.add(this.price); // сохранили старую цену в отдельный лист
             this.price = price;
         }
+    }
+    public void printPriceHistory(){
+        System.out.println("История изменения цены "+title+": "+history);
     }
 
     public double getPrice() {
         return price;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 }
